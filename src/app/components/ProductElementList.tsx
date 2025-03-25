@@ -11,7 +11,7 @@ export const ProductElementList = ({productName, productId}: {productName: strin
 				<span className="checkmark"></span>
 				<span className='font-medium'>{productName}</span>
 			</label>
-			<div className='self-end'>
+			<div className='self-end space-x-2'>
 				<DetailsIcon />
 				<DeleteButton />
 			</div>
