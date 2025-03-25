@@ -9,11 +9,13 @@ export const ReviewedCard = ({
 	productImage,
 	productName,
 	productPrice,
+	productId,
 }: {
 	status: 'approved' | 'rejected',
 	productImage: string,
 	productName: string,
 	productPrice: number,
+	productId: string,
 }) => {
   return (
     <div className="ml-5 mt-2 h-[320px] w-64 border-[1px] rounded-lg relative">
@@ -34,7 +36,7 @@ export const ReviewedCard = ({
 			</div>
 			<div className="flex space-x-2 justify-end absolute bottom-2 right-2">
 				<DetailsIcon />
-				<DeleteButton />
+				<DeleteButton view="reviewed" productId={productId} productName={productName}/>
 			</div>
     </div>
   )

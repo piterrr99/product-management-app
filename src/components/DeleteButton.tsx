@@ -4,12 +4,20 @@ import { openDeleteItemModal } from '@/lib/features/ui/uiSlice';
 import { useAppDispatch } from '@/lib/hooks';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export const DeleteButton = () => {
+export const DeleteButton = ({
+	productId, 
+	productName,
+	view,
+}: {
+	productId: string, 
+	productName: string,
+	view: 'reviewed' | 'not-reviewed'
+}) => {
 
 	const dispatch = useAppDispatch();
 	
 	const handleDelete = ()=>{
-		dispatch(openDeleteItemModal({productId: '1'}));
+		dispatch(openDeleteItemModal({productId, productName, view}));
 	}
 
   return (

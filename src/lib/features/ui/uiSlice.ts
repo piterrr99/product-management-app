@@ -5,8 +5,13 @@ interface ItemModal {
 	itemId: string | undefined;
 };
 
+interface DeleteModal extends ItemModal{
+	productName: string;
+	view: '' | 'reviewed' | 'not-reviewed'
+};
+
 interface StateInterface {
-	deleteItemModal: ItemModal;
+	deleteItemModal: DeleteModal;
 	detailsModal: ItemModal;
 	submitModal: {isOpen: boolean};
 }
@@ -14,7 +19,9 @@ interface StateInterface {
 const initialState: StateInterface = {
   deleteItemModal:{
 		isOpen: false,
-		itemId: undefined
+		itemId: undefined,
+		productName: '',
+		view: '',
 	},
 	detailsModal: {
 		isOpen: false,
@@ -29,15 +36,23 @@ const uiSlice = createSlice({
 	name: 'ui',
 	initialState,
 	reducers: {
-		openDeleteItemModal: (state, {payload }: {payload: {productId: string}})=> {
+		openDeleteItemModal: (state, {payload }: {
+			payload: {
+				productId: string | undefined, 
+				productName: string,
+				view: 'reviewed' | 'not-reviewed'
+			},
+		})=> {
 			state.deleteItemModal.itemId = payload.productId;
 			state.deleteItemModal.isOpen = true;
+			state.deleteItemModal.productName = payload.productName;
+			state.deleteItemModal.view = payload.view;
 		},
 		closeDeleteItemModal: (state)=> {
 			state.deleteItemModal.isOpen = false;
 			state.deleteItemModal.itemId = undefined;
 		},
-		openDetailsModal: (state, {payload}: {payload: {productId: string}})=>{
+		openDetailsModal: (state, {payload}: {payload: {productId: string | undefined}})=>{
 			state.detailsModal.isOpen = true;
 			state.detailsModal.itemId = payload.productId
 		},

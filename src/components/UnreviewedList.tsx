@@ -2,13 +2,23 @@
 
 import { ClientUnreviewedProduct } from "@/interface-adapters/ProductAdapter"
 import { ProductElementList } from "./ProductElementList"
-import { useAppSelector } from "@/lib/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/hooks"
 import { DetailsModal } from "./DetailsModal"
 import { SubmitRevisionModal } from "./SubmitRevisionModal"
 import { DeleteProductModal } from "./DeleteProductModal"
+import { useEffect } from "react"
+import { setUnreviewedElements } from "@/lib/features/products/productsSlice"
 
-export const UnreviewedList = ({unreviewedProducts}: {unreviewedProducts: ClientUnreviewedProduct[]}) => {
-	const { detailsModal, submitModal, deleteItemModal } = useAppSelector(state => state.ui);
+export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unreviewedProducts: ClientUnreviewedProduct[]}) => {
+	const { detailsModal, submitModal, deleteItemModal} = useAppSelector(state => state.ui);
+	const { unreviewedProducts } = useAppSelector(state => state.products);
+
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(setUnreviewedElements({unreviewedElements}))
+	}, [])
+	
   
 	return (
 		<>

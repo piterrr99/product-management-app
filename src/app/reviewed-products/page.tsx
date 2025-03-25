@@ -20,6 +20,7 @@ export default async function Page() {
 							productName={product.productName}
 							status={product.status}
 							productPrice={product.productPrice}
+							productId={product.id}
 						/>
 				))}
 			</div>

@@ -1,18 +1,21 @@
 'use client'
 
+import { deleteUnreviewedElement } from "@/lib/features/products/productsSlice";
+import { startDeleting } from "@/lib/features/products/thunks";
 import { closeDeleteItemModal } from "@/lib/features/ui/uiSlice";
-import { useAppDispatch } from "@/lib/hooks"
+import { useAppDispatch, useAppSelector } from "@/lib/hooks"
 
 
 export const DeleteProductModal = () => {
   
 	const dispatch = useAppDispatch();
+	const { deleteItemModal: { itemId, productName } } = useAppSelector(state => state.ui)
 	const handleCancel = ()=>{
 		dispatch(closeDeleteItemModal())
 	};
 
 	const handleDelete = ()=>{
-		dispatch(closeDeleteItemModal())
+		dispatch(startDeleting({productId: itemId}))
 	}
 
 	return (
@@ -20,7 +23,7 @@ export const DeleteProductModal = () => {
 			<div className="bg-white opacity-100 max-w-[350px] sm:max-w-[1000000px] sm:w-[500px] z-20 rounded-lg p-6 relative">
 				<h1 className="font-semibold text-xl mb-3">¿Borrar elemento?</h1>
 				<div className="mb-6 text-sm text-gray-500">
-					Esta acción eliminará permanentemente a <b>NombreDelProducto</b> de tu lista de productos. Su resultado no se puede deshacer.
+					Esta acción eliminará permanentemente a <b>{productName}</b> de tu lista de productos. Su resultado no se puede deshacer.
 				</div>
 				<div className="flex justify-end space-x-3">
 					<button onClick={handleCancel} className=" hover:bg-gray-100 font-bold text-sm w-20 py-3 border-[1px] border-gray-300 rounded-lg">Cancelar</button>

@@ -13,7 +13,7 @@ export const ProductElementList = ({productName, productId}: {productName: strin
 			</label>
 			<div className='self-end space-x-2'>
 				<DetailsIcon />
-				<DeleteButton />
+				<DeleteButton view='not-reviewed' productId={productId} productName={productName}/>
 			</div>
 		</div>
 

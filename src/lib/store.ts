@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ui from './features/ui/uiSlice'
+
+import ui from './features/ui/uiSlice';
+import products from './features/products/productsSlice'
 
 export const makeStore = ()=>{
     return configureStore({
         reducer: {
-            ui
+            ui,
+            products,
         }
     });
 };
