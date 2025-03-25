@@ -33,11 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}   
       >
         <MainHeader />
-        <div className="flex justify-center">
-          <div className="max-w-[800px]">
-            {children}        
-          </div>
-        </div>
+        {children}        
       </body>
     </html>
   );
