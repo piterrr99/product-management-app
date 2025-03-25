@@ -3,6 +3,8 @@ import { DeleteProductModal } from "../../components/DeleteProductModal";
 import { DetailsModal } from "../../components/DetailsModal";
 import { ProductElementList } from "../../components/ProductElementList";
 import { SubmitRevisionModal } from "../../components/SubmitRevisionModal";
+import { SubmitButton } from "@/components/SubmitButton";
+import { UnreviewedList } from "@/components/UnreviewedList";
 
 export default async function Page() {
 
@@ -16,19 +18,9 @@ export default async function Page() {
 				<div className="border-[2px] mx-10 border-[#f4f4f5] rounded-lg p-6">
 					<h1 className="text-2xl font-bold mb-6">Listado de Productos</h1>
 					<div className="mb-2 text-gray-500 text-sm">Marque los productos que desee aprobar. El resto serán rechazados.</div>
-					<div>
-						{unreviewedProducts.map((product) => (
-							<ProductElementList
-								productName={product.productName}
-								productId={product.id}
-								key={product.id}
-							/>
-						))}
-					</div>
+					<UnreviewedList unreviewedProducts={unreviewedProducts} />
 				</div>
-				<div className="flex justify-end border-[2px] border-t-0 mx-10 border-[#f4f4f5] rounded-lg p-6">
-						<button className="bg-black rounded-lg text-white py-2 px-5 hover:bg-slate-900">Revisar</button>
-				</div>
+				<SubmitButton />
 				{/* <DetailsModal 
 					productName={unreviewedProducts[1].productName}
 					productDescription={unreviewedProducts[1].productDescription}

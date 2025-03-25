@@ -9,7 +9,7 @@ interface ApiUnreviewedProduct {
 	created_at: Date;
 };
 
-interface ClientUnreviewedProduct {
+export interface ClientUnreviewedProduct {
 	id: string;
 	productProvider: string;
 	productName: string;
@@ -22,7 +22,7 @@ interface ApiReviewedProduct extends ApiUnreviewedProduct {
 	approved: boolean;
 };
 
-interface ClientReviewedProduct extends ClientUnreviewedProduct{
+export interface ClientReviewedProduct extends ClientUnreviewedProduct{
 	status: 'approved' | 'rejected';
 };
 

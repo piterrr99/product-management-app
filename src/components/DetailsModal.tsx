@@ -1,6 +1,10 @@
+'use client'
+
 import Image from "next/image"
 import CloseIcon from '@mui/icons-material/Close';
 import { StatusBadge } from "./StatusBadge";
+import { useAppDispatch } from "@/lib/hooks";
+import { closeDetailsModal } from "@/lib/features/ui/uiSlice";
 
 export const DetailsModal = ({
 	productName,
@@ -19,10 +23,16 @@ export const DetailsModal = ({
 	productPrice: number,
 	status?: 'approved' | 'rejected',
 }) => {
+
+	const dispatch = useAppDispatch();
+	const handleClose = ()=>{
+		dispatch(closeDetailsModal())
+	}
+
   return (
     <div className="flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-600 bg-opacity-20 z-10">
 			<div className="bg-white opacity-100 max-w-[350px] sm:max-w[100000px] sm:w-[500px] z-20 rounded-lg p-6 relative">
-				<button className="absolute right-2 top-2">
+				<button onClick={handleClose} className="absolute right-2 top-2">
 					<CloseIcon />
 				</button>
 				<h1 className="text-xl font-bold mb-2">{productName}</h1>
