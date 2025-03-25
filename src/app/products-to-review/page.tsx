@@ -1,7 +1,7 @@
-import { DeleteProductModal } from "../components/DeleteProductModal";
-import { DetailsModal } from "../components/DetailsModal";
-import { ProductElementList } from "../components/ProductElementList";
-import { SubmitRevisionModal } from "../components/SubmitRevisionModal";
+import { DeleteProductModal } from "../../components/DeleteProductModal";
+import { DetailsModal } from "../../components/DetailsModal";
+import { ProductElementList } from "../../components/ProductElementList";
+import { SubmitRevisionModal } from "../../components/SubmitRevisionModal";
 
 const productsArray = [
 	{
