@@ -1,7 +1,7 @@
 import { DeleteButton } from './DeleteButton';
 import { DetailsIcon } from './DetailsIcon';
 
-import '../styles/checkbox.css';
+import '../app/styles/checkbox.css';
 
 export const ProductElementList = ({productName, productId}: {productName: string, productId: string}) => {
 	return(
