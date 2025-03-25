@@ -4,7 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 export const DetailsModal = () => {
   return (
     <div className="flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-600 bg-opacity-20 z-10">
-			<div className="bg-white opacity-100 max-w-[350px] sm:w-[500px] z-20 rounded-lg p-6 relative">
+			<div className="bg-white opacity-100 max-w-[350px] sm:max-w[100000px] sm:w-[500px] z-20 rounded-lg p-6 relative">
 				<button className="absolute right-2 top-2">
 					<CloseIcon />
 				</button>
