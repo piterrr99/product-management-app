@@ -7,7 +7,7 @@ import { DetailsModal } from "./DetailsModal"
 import { SubmitRevisionModal } from "./SubmitRevisionModal"
 import { DeleteProductModal } from "./DeleteProductModal"
 import { useEffect } from "react"
-import { setUnreviewedElements } from "@/lib/features/products/productsSlice"
+import { startSettingUnreviewedProducts } from "@/lib/features/products/thunks"
 
 export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unreviewedProducts: ClientUnreviewedProduct[]}) => {
 	const { detailsModal, submitModal, deleteItemModal} = useAppSelector(state => state.ui);
@@ -20,8 +20,7 @@ export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unrevi
 		const storageElements = localStorage.getItem('unreviewed-products');
 		const finalElements = storageElements && initialFetchMade ? JSON.parse(storageElements) : unreviewedElements;
 		!initialFetchMade && localStorage.setItem('unreviewed-fetch', 'true');
-		dispatch(setUnreviewedElements({unreviewedElements: finalElements}));
-		localStorage.setItem('unreviewed-products', JSON.stringify(finalElements));
+		dispatch(startSettingUnreviewedProducts({unreviewedElements: finalElements}));
 	}, [])
 	
   

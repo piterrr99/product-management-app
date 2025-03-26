@@ -5,12 +5,22 @@ interface StateInterface {
 	unreviewedProducts: ClientUnreviewedProduct[];
 	reviewedProducts: ClientReviewedProduct[];
 	approvedProducts: string[];
+	reviewedProductsIndexes: {
+		startIndex: undefined | number;
+		endIndex: undefined | number;
+		totalPages: undefined | number;
+	}
 }
 
 const initialState: StateInterface = {
 	unreviewedProducts: [],
 	reviewedProducts: [],
 	approvedProducts: [],
+	reviewedProductsIndexes: {
+		startIndex: undefined,
+		endIndex: undefined,
+		totalPages: 1,
+	}
 };
 
 const productsSlice = createSlice({
@@ -43,6 +53,13 @@ const productsSlice = createSlice({
 		removeApprovedElement: (state, {payload}: {payload: {productId: string | undefined}})=>{
 			state.approvedProducts = state.approvedProducts.filter(productId=>productId !== payload.productId)
 		},
+		setReviewedPageInfo: (state, {payload}: {
+			payload: {startIndex: number | undefined, endIndex: number | undefined, totalPages: number | undefined}
+		})=>{
+			state.reviewedProductsIndexes.startIndex = payload.startIndex;
+			state.reviewedProductsIndexes.endIndex = payload.endIndex;
+			state.reviewedProductsIndexes.totalPages = payload.totalPages;
+		}
 	}
 });
 
@@ -54,5 +71,6 @@ export const {
 	addApprovedElement,
 	removeApprovedElement,
 	reviewElements,
+	setReviewedPageInfo,
 } = productsSlice.actions;
 export default productsSlice.reducer;
