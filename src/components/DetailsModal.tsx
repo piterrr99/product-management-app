@@ -44,15 +44,15 @@ export const DetailsModal = ({
 					<div className="font-light text-gray-500 text-sm">Proveedor: {product.productProvider}</div>
 					{isReviewed(product) && <StatusBadge status={product.status}/>}
 				</div>
-				<Image 
-					src={product.productImage}
-					alt="Imagen del producto"
-					width={100}
-					height={200}
-					className="w-[100%] max-h-[200px] sm:max-h-[300px] rounded-md"
-					priority
-				/>
-				
+				<div className="relative w-full h-[200px]">
+					<Image 
+						src={product.productImage}
+						alt="Imagen del producto"
+						className="rounded-md"
+						priority
+						fill
+					/>
+				</div>
 				<h3 className="font-medium text-sm text-gray-500 mt-3">Descripción</h3>
 				<p>{product.productDescription}</p>
 
