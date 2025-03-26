@@ -1,7 +1,11 @@
 import { ProductAdapter } from "@/interface-adapters/ProductAdapter";
-import { ReviewedCard } from "../../components/ReviewedCard";
 import { ReviewedList } from "@/components/ReviewedList";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: 'Productos Revisados'
+}
 
 export default async function Page() {
 
@@ -15,12 +19,10 @@ export default async function Page() {
 				<h1 className="font-bold text-2xl">Productos Revisados</h1>
 				<span className="font-light text-md text-gray-500">Productos que ya han sido marcados como aprobados o rechazados</span>
 			</div>
-			<div>
-			<div className="flex flex-wrap">
+			<div>	
 				<ReviewedList 
 					reviewedProducts={reviewedProducts}
 				/>
-			</div>
 			</div>
 		</div>
 	)
