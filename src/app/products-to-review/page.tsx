@@ -1,9 +1,9 @@
-import { ProductAdapter } from "@/interface-adapters/ProductAdapter";
+import { ClientUnreviewedProduct, ProductAdapter } from "@/interface-adapters/ProductAdapter";
 import { SubmitButton } from "@/components/SubmitButton";
 import { UnreviewedList } from "@/components/UnreviewedList";
 
 export default async function Page() {
-
+	
 	const response = await fetch('https://67e0cdfe58cc6bf78522f1bd.mockapi.io/api/v1/not-reviewed');
 	const apiUnreviewedProducts = await response.json();
 	const unreviewedProducts = ProductAdapter.adaptUnreviewed(apiUnreviewedProducts);

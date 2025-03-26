@@ -16,7 +16,12 @@ export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unrevi
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
-		dispatch(setUnreviewedElements({unreviewedElements}))
+		const initialFetchMade = localStorage.getItem('unreviewed-fetch');
+		const storageElements = localStorage.getItem('unreviewed-products');
+		const finalElements = storageElements && initialFetchMade ? JSON.parse(storageElements) : unreviewedElements;
+		!initialFetchMade && localStorage.setItem('unreviewed-fetch', 'true');
+		dispatch(setUnreviewedElements({unreviewedElements: finalElements}));
+		localStorage.setItem('unreviewed-products', JSON.stringify(finalElements));
 	}, [])
 	
   

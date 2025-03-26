@@ -15,7 +15,17 @@ export const ReviewedList = ({reviewedProducts: reviewedElements}: {reviewedProd
 	const { reviewedProducts} = useAppSelector(state => state.products);
 	const dispatch = useAppDispatch();
 	useEffect(() => {
-		dispatch(setReviewedElements({reviewedElements}))
+		const initialFetchMade = localStorage.getItem('reviewed-fetch');
+		const storageElements = localStorage.getItem('reviewed-products');
+		const finalElements =  storageElements
+			? initialFetchMade 
+				? JSON.parse(storageElements)
+				: JSON.parse(storageElements).concat(reviewedElements)
+			: reviewedElements;
+		!initialFetchMade && localStorage.setItem('reviewed-fetch', 'true');
+		console.log({finalElements})
+		dispatch(setReviewedElements({reviewedElements: finalElements}))
+		localStorage.setItem('reviewed-products', JSON.stringify(finalElements))
 	}, [])
 	
 	

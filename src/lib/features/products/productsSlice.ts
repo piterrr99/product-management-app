@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 interface StateInterface {
 	unreviewedProducts: ClientUnreviewedProduct[];
 	reviewedProducts: ClientReviewedProduct[];
-	approvedProducts: ClientUnreviewedProduct[];
+	approvedProducts: string[];
 }
 
 const initialState: StateInterface = {
@@ -21,14 +21,15 @@ const productsSlice = createSlice({
 			state.reviewedProducts = state.reviewedProducts.filter(product=>product.id !== payload.productId);
 		},
 		deleteUnreviewedElement: (state, {payload}: {payload: {productId: string | undefined}})=>{
-			state.unreviewedProducts = state.unreviewedProducts.filter(product=>product.id !== payload.productId);
+			state.unreviewedProducts = state.unreviewedProducts.filter(product=>product.id !== payload.productId)
 		},
 		reviewElements: (state, {payload}: {payload: {newElements: ClientReviewedProduct[]}}) =>{
 			payload.newElements.forEach(element=>{
-				element.id = String(state.reviewedProducts.length + 1);
-				state.reviewedProducts.push(element);		
+				element.id = String(state.reviewedProducts.length + 31);
+				state.reviewedProducts.unshift(element);
 			});
 			state.unreviewedProducts = [];
+			state.approvedProducts = [];
 		},
 		setUnreviewedElements: (state, {payload}: {payload: {unreviewedElements: ClientUnreviewedProduct[]}})=>{
 			state.unreviewedProducts = payload.unreviewedElements;
@@ -36,11 +37,11 @@ const productsSlice = createSlice({
 		setReviewedElements: (state, {payload}: {payload: {reviewedElements: ClientReviewedProduct[]}})=>{
 			state.reviewedProducts = payload.reviewedElements;
 		},
-		addApprovedElement: (state, {payload}: {payload: {approvedElement: ClientUnreviewedProduct}})=>{
-			state.approvedProducts.push(payload.approvedElement);
+		addApprovedElement: (state, {payload}: {payload: {productId: string | undefined}})=>{
+			payload.productId && state.approvedProducts.push(payload.productId) ;
 		},
-		removeApprovedElement: (state, {payload}: {payload: {approvedElement: ClientUnreviewedProduct}})=>{
-			state.approvedProducts = state.approvedProducts.filter(product=>product.id !== payload.approvedElement.id)
+		removeApprovedElement: (state, {payload}: {payload: {productId: string | undefined}})=>{
+			state.approvedProducts = state.approvedProducts.filter(productId=>productId !== payload.productId)
 		},
 	}
 });
