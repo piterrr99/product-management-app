@@ -35,7 +35,7 @@ export const ReviewedCard = ({
 				<h3 className="text-xl font-bold mt-2 mb-4">${productPrice}</h3>
 			</div>
 			<div className="flex space-x-2 justify-end absolute bottom-2 right-2">
-				<DetailsIcon />
+				<DetailsIcon productId={productId} />
 				<DeleteButton view="reviewed" productId={productId} productName={productName}/>
 			</div>
     </div>

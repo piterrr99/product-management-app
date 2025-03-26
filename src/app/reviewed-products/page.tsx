@@ -1,5 +1,7 @@
 import { ProductAdapter } from "@/interface-adapters/ProductAdapter";
 import { ReviewedCard } from "../../components/ReviewedCard";
+import { ReviewedList } from "@/components/ReviewedList";
+import { Suspense } from "react";
 
 export default async function Page() {
 
@@ -13,16 +15,12 @@ export default async function Page() {
 				<h1 className="font-bold text-2xl">Productos Revisados</h1>
 				<span className="font-light text-md text-gray-500">Productos que ya han sido marcados como aprobados o rechazados</span>
 			</div>
+			<div>
 			<div className="flex flex-wrap">
-				{reviewedProducts.map(product=>(
-						<ReviewedCard 
-							productImage={product.productImage}
-							productName={product.productName}
-							status={product.status}
-							productPrice={product.productPrice}
-							productId={product.id}
-						/>
-				))}
+				<ReviewedList 
+					reviewedProducts={reviewedProducts}
+				/>
+			</div>
 			</div>
 		</div>
 	)

@@ -19,7 +19,7 @@ export const DeleteProductModal = () => {
 	}
 
 	return (
-		<div className="flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-600 bg-opacity-20 z-10">
+		<div className="flex justify-center items-center fixed top-0 left-0 w-screen h-screen bg-slate-600 bg-opacity-20 z-40">
 			<div className="bg-white opacity-100 max-w-[350px] sm:max-w-[1000000px] sm:w-[500px] z-20 rounded-lg p-6 relative">
 				<h1 className="font-semibold text-xl mb-3">¿Borrar elemento?</h1>
 				<div className="mb-6 text-sm text-gray-500">

@@ -1,8 +1,4 @@
 import { ProductAdapter } from "@/interface-adapters/ProductAdapter";
-import { DeleteProductModal } from "../../components/DeleteProductModal";
-import { DetailsModal } from "../../components/DetailsModal";
-import { ProductElementList } from "../../components/ProductElementList";
-import { SubmitRevisionModal } from "../../components/SubmitRevisionModal";
 import { SubmitButton } from "@/components/SubmitButton";
 import { UnreviewedList } from "@/components/UnreviewedList";
 
@@ -21,16 +17,6 @@ export default async function Page() {
 					<UnreviewedList unreviewedProducts={unreviewedProducts} />
 				</div>
 				<SubmitButton />
-				{/* <DetailsModal 
-					productName={unreviewedProducts[1].productName}
-					productDescription={unreviewedProducts[1].productDescription}
-					productId={unreviewedProducts[1].id}
-					productImage={unreviewedProducts[1].productImage}
-					productPrice={unreviewedProducts[1].productPrice}
-					productProvider={unreviewedProducts[1].productProvider}
-				/> */}
-				{/* <DeleteProductModal /> */}
-				{/* <SubmitRevisionModal /> */}
 			</div>
 		</div>
 		

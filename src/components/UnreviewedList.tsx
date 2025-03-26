@@ -32,13 +32,9 @@ export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unrevi
 				))}
 			</div>
 			{detailsModal.isOpen && 
-			<DetailsModal 
-				productName={unreviewedProducts[0].productName}
-				productDescription={unreviewedProducts[0].productDescription}
-				productId={unreviewedProducts[0].id}
-				productImage={unreviewedProducts[0].productImage}
-				productPrice={unreviewedProducts[0].productPrice}
-				productProvider={unreviewedProducts[0].productProvider}
+			<DetailsModal
+				productId={detailsModal.itemId}
+				products={unreviewedProducts}
 			/>}
 			{submitModal.isOpen &&
 			<SubmitRevisionModal />
