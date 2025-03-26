@@ -1,6 +1,5 @@
 'use client'
 
-import { deleteUnreviewedElement } from "@/lib/features/products/productsSlice";
 import { startDeleting } from "@/lib/features/products/thunks";
 import { closeDeleteItemModal } from "@/lib/features/ui/uiSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks"

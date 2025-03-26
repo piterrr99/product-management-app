@@ -48,7 +48,9 @@ const productsSlice = createSlice({
 			state.reviewedProducts = payload.reviewedElements;
 		},
 		addApprovedElement: (state, {payload}: {payload: {productId: string | undefined}})=>{
-			payload.productId && state.approvedProducts.push(payload.productId) ;
+			if(payload.productId) {
+				state.approvedProducts.push(payload.productId)
+			};
 		},
 		removeApprovedElement: (state, {payload}: {payload: {productId: string | undefined}})=>{
 			state.approvedProducts = state.approvedProducts.filter(productId=>productId !== payload.productId)

@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 
 export default async function Page() {	
 	
+	// Dejo que se cachee la respuesta dado que a partir de ahora se usa el LocalStorage como BD.
 	const response = await fetch('https://67e0cdfe58cc6bf78522f1bd.mockapi.io/api/v1/not-reviewed');
 	const apiUnreviewedProducts = await response.json();
 	const unreviewedProducts = ProductAdapter.adaptUnreviewed(apiUnreviewedProducts);

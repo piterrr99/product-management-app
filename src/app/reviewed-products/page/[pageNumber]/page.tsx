@@ -1,6 +1,5 @@
 import { ProductAdapter } from "@/interface-adapters/ProductAdapter";
 import { ReviewedList } from "@/components/ReviewedList";
-// import { Suspense } from "react";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,9 +7,10 @@ export const metadata: Metadata = {
 }
 
 export default async function Page(props: {params: Promise<{pageNumber: string}>}) {
-    const params = await props.params;
-    const pageNumber = params.pageNumber;
+	const params = await props.params;
+	const pageNumber = params.pageNumber;
 
+	// Dejo que se cachee la respuesta dado que a partir de ahora se usa el LocalStorage como BD.
 	const response = await fetch('https://67e0cdfe58cc6bf78522f1bd.mockapi.io/api/v1/reviewed');
 	const apiReviewedProducts = await response.json();
 	const reviewedProducts = ProductAdapter.adaptReviewed(apiReviewedProducts);

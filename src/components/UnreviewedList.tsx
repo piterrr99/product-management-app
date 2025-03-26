@@ -19,7 +19,9 @@ export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unrevi
 		const initialFetchMade = localStorage.getItem('unreviewed-fetch');
 		const storageElements = localStorage.getItem('unreviewed-products');
 		const finalElements = storageElements && initialFetchMade ? JSON.parse(storageElements) : unreviewedElements;
-		!initialFetchMade && localStorage.setItem('unreviewed-fetch', 'true');
+		if (!initialFetchMade) { 
+			localStorage.setItem('unreviewed-fetch', 'true');
+		};
 		dispatch(startSettingUnreviewedProducts({unreviewedElements: finalElements}));
 	}, [])
 	
@@ -35,7 +37,7 @@ export const UnreviewedList = ({unreviewedProducts: unreviewedElements}: {unrevi
 					/>
 				))}
 			</div>
-			{detailsModal.isOpen && 
+			{detailsModal.isOpen &&			
 			<DetailsModal
 				productId={detailsModal.itemId}
 				products={unreviewedProducts}

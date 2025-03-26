@@ -7,7 +7,7 @@ import { setReviewedElements, setReviewedPageInfo } from "@/lib/features/product
 import { useEffect } from "react";
 import { DeleteProductModal } from "./DeleteProductModal";
 import { DetailsModal } from "./DetailsModal";
-import { notFound, useSearchParams } from "next/navigation";
+import { notFound } from "next/navigation";
 import { getPageInfo } from "@/helpers/helpers";
 import { PaginationButton } from "./PaginationButton";
 
@@ -32,7 +32,9 @@ export const ReviewedList = ({
 				? JSON.parse(storageElements)
 				: JSON.parse(storageElements).concat(reviewedElements)
 			: reviewedElements;
-		!initialFetchMade && localStorage.setItem('reviewed-fetch', 'true');
+		if(!initialFetchMade) {
+			localStorage.setItem('reviewed-fetch', 'true');
+		};
 		const { 
 			isValid, 
 			pageProducts, 
