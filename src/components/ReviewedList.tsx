@@ -51,7 +51,7 @@ export const ReviewedList = ({
 	
 	return (
 		<>
-			<div className="flex flex-wrap mb-10">
+			<div className="flex justify-center sm:justify-normal flex-wrap mb-10">
 				{reviewedProducts.map(product=>(
 					<ReviewedCard
 						productImage={product.productImage}
@@ -63,26 +63,19 @@ export const ReviewedList = ({
 					/>
 				))}
 			</div>
-			<div className="flex justify-center">
+			{reviewedProducts && reviewedProducts.length === 0 && (
+				<div className="flex justify-center items-center h-[500px]">No hay productos revisados</div>
+			)}
+			<div className="flex justify-center flex-wrap">
+				<div className="flex justify-start flex-wrap">
 				{pagesArray.map(page=>(
-					// <button key={`page-${page}`} className="border-gray-300 border-[1px] rounded-md h-10 w-10 ml-5 hover:bg-slate-100">
-					// 	{page}
-					// </button>	
 					<PaginationButton 
 						page={page}
 						currentPage={pageNumber}
 						key={`page-${page}`}
 					/>
 				))}
-				{/* <button className="border-gray-300 border-[1px] rounded-md h-10 w-10 ml-5 hover:bg-slate-100">
-					1
-				</button>
-				<button className="border-gray-300 border-[1px] rounded-md h-10 w-10 ml-3 hover:bg-slate-100">
-					2
-				</button>
-				<button className="border-gray-300 border-[1px] bg-black text-white rounded-md h-10 w-10 ml-3 hover:bg-gray-900">
-					3
-				</button> */}
+				</div>
 			</div>
 			{deleteItemModal.isOpen && 
 				<DeleteProductModal />

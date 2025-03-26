@@ -19,7 +19,7 @@ const initialState: StateInterface = {
 	reviewedProductsIndexes: {
 		startIndex: undefined,
 		endIndex: undefined,
-		totalPages: 1,
+		totalPages: 0,
 	}
 };
 

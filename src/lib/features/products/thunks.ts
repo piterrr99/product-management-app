@@ -1,4 +1,4 @@
-import { addApprovedElement, deleteReviewedElement, deleteUnreviewedElement, removeApprovedElement, reviewElements, setReviewedElements, setUnreviewedElements } from "./productsSlice"
+import { addApprovedElement, deleteReviewedElement, deleteUnreviewedElement, removeApprovedElement, reviewElements, setReviewedElements, setReviewedPageInfo, setUnreviewedElements } from "./productsSlice"
 import { closeDeleteItemModal, closeSubmitModal } from "../ui/uiSlice"
 import { AppDispatch, RootState } from "@/lib/store";
 import { ClientReviewedProduct, ClientUnreviewedProduct } from "@/interface-adapters/ProductAdapter";
@@ -27,12 +27,15 @@ export const startDeleting = ({
 					: [];
 				localStorage.setItem('reviewed-products', JSON.stringify(resultantReviewProducts));
 				const { 
-					reviewedProductsIndexes: {endIndex},
+					reviewedProductsIndexes: {endIndex, startIndex, totalPages},
 					reviewedProducts: auxProducts
 				 } = getState().products;
 				if(endIndex && endIndex <= resultantReviewProducts.length) {
 					const reviewedProducts = auxProducts.concat(resultantReviewProducts[endIndex - 1]);
 					dispatch(setReviewedElements({reviewedElements: reviewedProducts}))
+				}
+				if(totalPages && (resultantReviewProducts.length/7 < totalPages) ) {
+					dispatch(setReviewedPageInfo({startIndex, endIndex, totalPages: Math.ceil(resultantReviewProducts.length/7)}))
 				}
 			} else {
 				const { reviewedProducts } = getState().products;
@@ -51,10 +54,6 @@ export const startSettingUnreviewedProducts = ({
 		localStorage.setItem('unreviewed-products', JSON.stringify(unreviewedElements))
 	};
 };
-
-export const startSettingReviewedProducts = ({
-	
-})
 
 export const toggleCheck = ({
 	productId,
@@ -81,8 +80,15 @@ export const startReviewingElements = ()=>{
 			return reviewedProduct;
 		});
 		dispatch(reviewElements({newElements}));
-		const { reviewedProducts } = getState().products;
-		localStorage.setItem('reviewed-products', JSON.stringify(reviewedProducts));
+		const isreviewFetched = localStorage.getItem('reviewed-fetch')
+		if(!isreviewFetched){
+			const { reviewedProducts } = getState().products;
+			localStorage.setItem('reviewed-products', JSON.stringify(reviewedProducts));
+		} else {
+			const reviewedProducts = localStorage.getItem('reviewed-products');
+			const resultingProducts = reviewedProducts ? newElements.concat(JSON.parse(reviewedProducts)) : newElements;
+			localStorage.setItem('reviewed-products', JSON.stringify(resultingProducts));
+		}
 		localStorage.setItem('unreviewed-products', '[]')
 		dispatch(closeSubmitModal());
 	}

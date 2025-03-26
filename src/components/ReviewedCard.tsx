@@ -18,7 +18,7 @@ export const ReviewedCard = ({
 	productId: string,
 }) => {
   return (
-    <div className="ml-5 mt-2 h-[320px] w-64 border-[1px] rounded-lg relative">
+    <div className="ml-0 sm:ml-5 mt-2 h-[320px] w-64 border-[1px] rounded-lg relative">
 			<StatusBadge status={status} absolute />
 			<div className="relative w-full h-[200px]">
 				<Image 
